@@ -1,0 +1,130 @@
+{
+	"root": true,
+	"ignorePatterns": ["**/*"],
+	"plugins": ["@nrwl/nx", "unicorn"],
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+			"rules": {
+				"no-magic-numbers": "off",
+				"unicorn/no-useless-spread": "off",
+				"unicorn/switch-case-braces": "off",
+				"unicorn/no-negated-condition": "off",
+				"unicorn/prefer-top-level-await": "off",
+				"@typescript-eslint/no-magic-numbers": [
+					"off",
+					{
+						"ignore": [-2, -1, 0, 1, 2, 3, 4, 5, 10, 60, 1000],
+						"ignoreTypeIndexes": true,
+						"ignoreArrayIndexes": true,
+						"ignoreNumericLiteralTypes": true
+					}
+				],
+				"@nrwl/nx/enforce-module-boundaries": [
+					"error",
+					{
+						"enforceBuildableLibDependency": true,
+						"allow": ["path", "crypto", "http", "fs", "util", "os", "worker_threads", "stream", "node:*"],
+						"depConstraints": [
+							{
+								"sourceTag": "*",
+								"onlyDependOnLibsWithTags": ["*"]
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"files": ["*.ts", "*.tsx"],
+			"extends": ["plugin:@nrwl/nx/typescript", "plugin:unicorn/recommended"],
+			"rules": {
+				"@typescript-eslint/no-inferrable-types": ["warn", { "ignoreParameters": true }],
+				"curly": "error",
+				"no-duplicate-imports": "off",
+				"@typescript-eslint/no-duplicate-imports": ["error"],
+				"@typescript-eslint/explicit-function-return-type": [
+					"warn",
+					{ "allowTypedFunctionExpressions": true, "allowHigherOrderFunctions": true, "allowExpressions": true }
+				],
+				"no-magic-numbers": "off",
+				"unicorn/no-useless-spread": "off",
+				"unicorn/switch-case-braces": "off",
+				"unicorn/no-negated-condition": "off",
+				"unicorn/prefer-top-level-await": "off",
+				"@typescript-eslint/no-magic-numbers": [
+					"off",
+					{
+						"ignore": [-2, -1, 0, 1, 2, 3, 4, 5, 10, 60, 1000],
+						"ignoreTypeIndexes": true,
+						"ignoreArrayIndexes": true,
+						"ignoreNumericLiteralTypes": true
+					}
+				],
+				"no-console": "warn",
+				"unicorn/filename-case": [
+					"error",
+					{
+						"cases": {
+							"kebabCase": true,
+							"pascalCase": true
+						},
+						"ignore": ["bls_c.d.ts"]
+					}
+				],
+				"unicorn/prevent-abbreviations": 0,
+				"unicorn/no-this-assignment": 0,
+				"unicorn/no-null": 0,
+				"unicorn/prefer-node-protocol": 0,
+				"unicorn/no-useless-undefined": 0,
+				"unicorn/catch-error-name": 0,
+				"unicorn/prefer-date-now": 0,
+				"unicorn/no-object-as-default-parameter": 0,
+				"unicorn/prefer-spread": 0,
+				"unicorn/prefer-ternary": 0,
+				"unicorn/no-empty-file": "warn",
+				"unicorn/no-zero-fractions": 0,
+				"unicorn/no-lonely-if": 0,
+				"unicorn/prefer-module": 0,
+				"unicorn/no-for-loop": 0,
+				"unicorn/prefer-number-properties": 0,
+				"unicorn/no-static-only-class": 0,
+				"unicorn/prefer-type-error": 0,
+				"unicorn/no-array-callback-reference": 0,
+				"unicorn/no-array-reduce": 0,
+				"unicorn/prefer-code-point": 0,
+				"unicorn/consistent-function-scoping": 0,
+				"unicorn/no-array-method-this-argument": 0,
+				"unicorn/prefer-object-from-entries": 0,
+				"unicorn/numeric-separators-style": [
+					"warn",
+					{
+						"number": {
+							"minimumDigits": 6
+						}
+					}
+				],
+				"unicorn/number-literal-case": 0,
+				"unicorn/no-nested-ternary": 0,
+				"no-mixed-spaces-and-tabs": 0
+			}
+		},
+		{
+			"files": ["*.spec.ts", "*.test.ts"],
+			"extends": ["plugin:@nrwl/nx/typescript", "plugin:jest/recommended"],
+			"rules": {
+				"@typescript-eslint/no-explicit-any": 0,
+				"@typescript-eslint/no-unused-vars": 0,
+				"@typescript-eslint/no-magic-numbers": "off",
+				"no-magic-numbers": "off",
+				"jest/no-alias-methods": "off",
+				"jest/no-conditional-expect": "warn"
+			}
+		},
+		{
+			"files": ["*.js", "*.jsx"],
+			"extends": ["plugin:@nrwl/nx/javascript"],
+			"rules": {}
+		}
+	]
+}
