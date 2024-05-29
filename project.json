@@ -1,0 +1,69 @@
+{
+	"name": "natrix-verifier",
+	"$schema": "node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "src",
+	"projectType": "application",
+	"targets": {
+		"build": {
+			"executor": "@nrwl/webpack:webpack",
+			"outputs": ["{options.outputPath}"],
+			"defaultConfiguration": "production",
+			"options": {
+				"outputPath": "dist/natrix-verifier",
+				"main": "./src/main.ts",
+				"tsConfig": "tsconfig.app.json",
+				"assets": ["./src/assets"],
+				"target": "node",
+				"compiler": "tsc",
+				"isolatedConfig": true,
+				"generatePackageJson": true,
+				"webpackConfig": "webpack.config.js"
+			},
+			"configurations": {
+				"development": {},
+				"production": {
+					"optimization": true,
+					"inspect": false
+				}
+			}
+		},
+		"serve": {
+			"executor": "@nrwl/js:node",
+			"defaultConfiguration": "development",
+			"options": {
+				"buildTarget": "natrix-verifier:build"
+			},
+			"configurations": {
+				"development": {
+					"buildTarget": "natrix-verifier:build:development",
+					"inspect": true
+				},
+				"production": {
+					"buildTarget": "natrix-verifier:build:production"
+				}
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["./**/*.ts"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectName}"],
+			"options": {
+				"jestConfig": "jest.config.ts",
+				"passWithNoTests": true
+			},
+			"configurations": {
+				"ci": {
+					"ci": true,
+					"codeCoverage": true
+				}
+			}
+		}
+	},
+	"tags": []
+}
